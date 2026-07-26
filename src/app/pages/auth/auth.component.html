@@ -1,1 +1,21 @@
-<p>auth works!</p>
+<div class="auth-container">
+    <div class="auth-box">
+        <h1>Momentum</h1>
+        <div class="form-container">
+            @if(mode === 'login') {
+            <app-login *ngIf="mode === 'login'"></app-login>
+            <span>Don't have an account yet?</span>
+            <button class="tab-btn" (click)="switchMode('register')">
+                Register
+            </button>
+            }
+            @else {
+            <app-register *ngIf="mode === 'register'"></app-register>
+            <span>Already have an account?</span>
+            <button class="tab-btn" (click)="switchMode('login')">
+                Login
+            </button>
+            }
+        </div>
+    </div>
+</div>
