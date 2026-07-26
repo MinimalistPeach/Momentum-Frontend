@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from '../../components/login/login.component';
 import { RegisterComponent } from '../../components/register/register.component';
+import { AuthService, LoginUserDto } from '../../api';
+import { lastValueFrom } from 'rxjs';
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-auth',
@@ -10,9 +13,20 @@ import { RegisterComponent } from '../../components/register/register.component'
   styleUrl: './auth.component.scss'
 })
 export class AuthComponent {
+
+  private readonly authService: AuthService = inject(AuthService);
+
+  private readonly tokenService: TokenService = inject(TokenService);
+
   mode: 'login' | 'register' = 'login';
 
   switchMode(newMode: 'login' | 'register'): void {
     this.mode = newMode;
+  }
+
+  async login(loginData: LoginUserDto) {
+    await lastValueFrom(this.authService.signIn(loginData)).then((token) => {
+      this.tokenService.setToken(token.access_token);
+    });
   }
 }

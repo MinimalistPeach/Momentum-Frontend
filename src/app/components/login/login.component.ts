@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TokenService } from '../../services/token.service';
 import { Router } from '@angular/router';
+import { LoginUserDto } from '../../api';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,10 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  email: string = '';
+
+  @Output() loginButtonPressed: EventEmitter<LoginUserDto> = new EventEmitter();
+
+  username: string = '';
   password: string = '';
   error: string = '';
 
@@ -21,14 +25,9 @@ export class LoginComponent {
   ) {}
 
   onSubmit(): void {
-    if (!this.email || !this.password) {
+    if (!this.username || !this.password) {
       this.error = 'Please fill in all fields';
       return;
     }
-
-    // Mock login - replace with actual API call
-    const mockToken = 'mock_token_' + Math.random().toString(36).substring(7);
-    this.tokenService.setToken(mockToken);
-    this.router.navigate(['/home']);
   }
 }

@@ -3,7 +3,7 @@
         <h1>Momentum</h1>
         <div class="form-container">
             @if(mode === 'login') {
-            <app-login *ngIf="mode === 'login'"></app-login>
+            <app-login (loginButtonPressed)="login($event)" *ngIf="mode === 'login'"></app-login>
             <span>Don't have an account yet?</span>
             <button class="tab-btn" (click)="switchMode('register')">
                 Register
