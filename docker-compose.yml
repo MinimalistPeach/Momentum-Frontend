@@ -1,0 +1,6 @@
+services:
+  momentum-frontend:
+    build:
+      context: .
+    ports:
+      - 4200:4200
