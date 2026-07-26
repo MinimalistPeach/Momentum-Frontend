@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TokenService } from '../../services/token.service';
 import { Router } from '@angular/router';
+import { RegisterUserDto } from '../../api';
 
 @Component({
   selector: 'app-register',
@@ -11,19 +12,21 @@ import { Router } from '@angular/router';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-  email: string = '';
+
+  @Output() registerButtonClick: EventEmitter<RegisterUserDto> = new EventEmitter();
+
+  username: string = '';
   password: string = '';
   confirmPassword: string = '';
   error: string = '';
   success: string = '';
 
   constructor(
-    private tokenService: TokenService,
     private router: Router
   ) {}
 
   onSubmit(): void {
-    if (!this.email || !this.password || !this.confirmPassword) {
+    if (!this.username || !this.password || !this.confirmPassword) {
       this.error = 'Please fill in all fields';
       this.success = '';
       return;
@@ -41,9 +44,6 @@ export class RegisterComponent {
       return;
     }
 
-    // Mock register - replace with actual API call
-    const mockToken = 'mock_token_' + Math.random().toString(36).substring(7);
-    this.tokenService.setToken(mockToken);
     this.success = 'Account created successfully!';
     this.error = '';
 

@@ -10,7 +10,7 @@
             </button>
             }
             @else {
-            <app-register *ngIf="mode === 'register'"></app-register>
+            <app-register (registerButtonClick)="register($event)" *ngIf="mode === 'register'"></app-register>
             <span>Already have an account?</span>
             <button class="tab-btn" (click)="switchMode('login')">
                 Login

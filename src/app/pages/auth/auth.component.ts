@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from '../../components/login/login.component';
 import { RegisterComponent } from '../../components/register/register.component';
-import { AuthService, LoginUserDto } from '../../api';
+import { AuthService, LoginUserDto, RegisterUserDto } from '../../api';
 import { lastValueFrom } from 'rxjs';
 import { TokenService } from '../../services/token.service';
 
@@ -28,5 +28,9 @@ export class AuthComponent {
     await lastValueFrom(this.authService.signIn(loginData)).then((token) => {
       this.tokenService.setToken(token.access_token);
     });
+  }
+
+  async register(registerData: RegisterUserDto) {
+    await lastValueFrom(this.authService.register(registerData));
   }
 }
