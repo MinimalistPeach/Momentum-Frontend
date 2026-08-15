@@ -76,6 +76,14 @@
   background: rgba(255,255,255,0.08);
 }
 
+.app-shell.dark-mode .menu-item {
+  color: #e5e7eb;
+}
+
+.app-shell.dark-mode .page-title {
+  color: #e5e7eb;
+}
+
 .main {
   flex: 1 1 auto;
   background: #fff;
@@ -84,7 +92,13 @@
   min-width: 0;
   min-height: 100vh;
   overflow: visible;
+  transition: background 0.2s ease;
 }
+
+.app-shell.dark-mode .main {
+  background: #111827;
+}
+
 .topbar {
   display: flex;
   align-items: center;
@@ -96,15 +110,29 @@
   top: 0;
   background: #fff;
   z-index: 2;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
-.menu-toggle {
+
+.app-shell.dark-mode .topbar {
+  background: #111827;
+  border-color: #374151;
+}
+.menu-toggle,
+.theme-toggle {
   background: transparent;
   border: none;
   font-size: 20px;
   cursor: pointer;
   display: inline-block;
   padding: 0;
+  color: inherit;
 }
+
+.theme-toggle {
+  margin-left: auto;
+  font-size: 18px;
+}
+
 .page-title {
   font-size: 32px;
   margin: 0;
@@ -116,6 +144,12 @@
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  transition: background 0.2s ease;
+}
+
+.app-shell.dark-mode .content {
+  background: #0f172a;
+  color: #e5e7eb;
 }
 
 .sidebar-backdrop {

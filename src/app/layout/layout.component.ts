@@ -14,9 +14,14 @@ export class LayoutComponent {
   private readonly _userService = inject(UserService);
 
   showMenu = true;
+  darkMode = false;
 
   toggleMenu(): void {
     this.showMenu = !this.showMenu;
+  }
+
+  toggleTheme(): void {
+    this.darkMode = !this.darkMode;
   }
 
   public get username(): string {
