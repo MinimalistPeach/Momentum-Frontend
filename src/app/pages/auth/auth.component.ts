@@ -10,7 +10,7 @@ import { TokenService } from '../../services/token.service';
   selector: 'app-auth',
   imports: [CommonModule, LoginComponent, RegisterComponent],
   templateUrl: './auth.component.html',
-  styleUrl: './auth.component.scss'
+  styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
 

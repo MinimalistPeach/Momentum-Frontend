@@ -1,0 +1,26 @@
+.plans-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.left {
+  padding: 12px 8px;
+}
+.progress { background: #f5f7fb; height: 10px; border-radius: 6px; margin-top: 12px; }
+.progress-inner { height: 100%; background: #3b5bdc; border-radius: 6px; transition: width .2s ease; }
+.progress-info { font-weight: 600; margin-top: 8px; }
+
+.center { padding: 12px 8px; }
+.tasks { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+.tasks li { display: flex; align-items: center; }
+.tasks li.active { background: rgba(77, 52, 212, 0.08); padding: 12px; border-radius: 6px; }
+.task-title { margin-left: 12px; }
+
+.right { padding: 12px 8px; }
+
+@media (max-width: 900px) {
+  .plans-page { grid-template-columns: 1fr; }
+  .right { order: 3; }
+}

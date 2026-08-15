@@ -9,7 +9,7 @@ import { RegisterUserDto } from '../../api';
   selector: 'app-register',
   imports: [CommonModule, FormsModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
 

@@ -9,7 +9,7 @@ import { LoginUserDto } from '../../api';
   selector: 'app-login',
   imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
 
