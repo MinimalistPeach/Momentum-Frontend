@@ -1,4 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
+import { trigger, transition, style, animate } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { ListPlanDto, PlanService } from '../../api';
 import { lastValueFrom } from 'rxjs';
@@ -11,6 +12,18 @@ import { FormsModule } from '@angular/forms';
     imports: [CommonModule, MatCheckboxModule, FormsModule],
     templateUrl: './plans.component.html',
     styleUrls: ['./plans.component.scss']
+    ,
+    animations: [
+        trigger('fadeInOut', [
+            transition(':enter', [
+                style({ opacity: 0, transform: 'translateY(-8px)' }),
+                animate('220ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+            ]),
+            transition(':leave', [
+                animate('180ms ease-in', style({ opacity: 0, transform: 'translateY(8px)' }))
+            ])
+        ])
+    ]
 })
 export class PlansComponent implements OnInit {
 
@@ -37,8 +50,9 @@ export class PlansComponent implements OnInit {
     }
 
     async changePlanStatus(plan: ListPlanDto, value: boolean) {
-        await lastValueFrom(this._planApi.updateUserPlanById(plan)).then(() => {
-            console.log('Terv frissítve')
+        plan.isCompleted = value;
+        await lastValueFrom(this._planApi.updateUserPlanById(plan)).then(async () => {
+            await this.load();
         })
     }
 }

@@ -1,26 +1,75 @@
 .plans-page {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 24px;
-  align-items: start;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    align-items: start;
 }
 
 .left {
-  padding: 12px 8px;
+    padding: 12px 8px;
 }
-.progress { background: #f5f7fb; height: 10px; border-radius: 6px; margin-top: 12px; }
-.progress-inner { height: 100%; background: #3b5bdc; border-radius: 6px; transition: width .2s ease; }
-.progress-info { font-weight: 600; margin-top: 8px; }
 
-.center { padding: 12px 8px; }
-.tasks { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
-.tasks li { display: flex; align-items: center; }
-.tasks li.active { background: rgba(77, 52, 212, 0.08); padding: 12px; border-radius: 6px; }
-.task-title { margin-left: 12px; }
+.center {
+    padding: 12px 8px;
+}
 
-.right { padding: 12px 8px; }
+.tasks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.tasks li {
+    display: block;
+}
+
+.task-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 1px 4px rgba(16,24,40,0.06);
+    border: 1px solid rgba(16,24,40,0.04);
+    width: 50%;
+}
+
+.task-card-checkbox {
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+}
+
+.task-card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-title {
+    margin-left: 12px;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.task-description {
+    font-size: 12px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.right {
+    padding: 12px 8px;
+}
 
 @media (max-width: 900px) {
-  .plans-page { grid-template-columns: 1fr; }
-  .right { order: 3; }
+    .plans-page {
+        grid-template-columns: 1fr;
+    }
+
+    .right {
+        order: 3;
+    }
 }

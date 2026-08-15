@@ -2,12 +2,17 @@
     <div class="left">
         <h4>ELVÉGZETT NAPI TEENDŐK</h4>
         <ul class="tasks">
-            <li *ngFor="let p of completedPlans()" [class.active]="p === plans()[1]">
-                <label>
-                    <mat-checkbox [ngModel]="p.isCompleted"
-                        (change)="this.changePlanStatus(p, $event.checked)"></mat-checkbox>
-                    <span class="task-title">{{p.title}}</span>
-                </label>
+            <li *ngFor="let p of completedPlans()" @fadeInOut>
+                <div class="task-card">
+                    <div class="task-card-checkbox">
+                        <mat-checkbox [ngModel]="p.isCompleted"
+                            (change)="this.changePlanStatus(p, $event.checked)"></mat-checkbox>
+                    </div>
+                    <div class="task-card-content">
+                        <div class="task-title">{{p.title}}</div>
+                        <div class="task-description">{{p.description}}</div>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
@@ -15,12 +20,17 @@
     <div class="center">
         <h4>HÁTRALEVŐ NAPI TEENDŐK</h4>
         <ul class="tasks">
-            <li *ngFor="let p of remainingPlans()" [class.active]="p === plans()[1]">
-                <label>
-                    <mat-checkbox [ngModel]="p.isCompleted"
-                        (change)="this.changePlanStatus(p, $event.checked)"></mat-checkbox>
-                    <span class="task-title">{{p.title}}</span>
-                </label>
+            <li *ngFor="let p of remainingPlans()" @fadeInOut>
+                <div class="task-card">
+                    <div class="task-card-checkbox">
+                        <mat-checkbox [ngModel]="p.isCompleted"
+                            (change)="this.changePlanStatus(p, $event.checked)"></mat-checkbox>
+                    </div>
+                    <div class="task-card-content">
+                        <div class="task-title">{{p.title}}</div>
+                        <div class="task-description">{{p.description}}</div>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
