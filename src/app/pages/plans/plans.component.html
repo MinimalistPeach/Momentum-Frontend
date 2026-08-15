@@ -1,26 +1,32 @@
 <div class="plans-page">
-  <div class="left">
-    <h3>Napi teendők aránya</h3>
-    <div class="progress-info">{{completedCount}}/{{totalCount}}</div>
-    <div class="progress">
-      <div class="progress-inner" [style.width.%]="progressPct"></div>
+    <div class="left">
+        <h4>ELVÉGZETT NAPI TEENDŐK</h4>
+        <ul class="tasks">
+            <li *ngFor="let p of completedPlans()" [class.active]="p === plans()[1]">
+                <label>
+                    <mat-checkbox [ngModel]="p.isCompleted"
+                        (change)="this.changePlanStatus(p, $event.checked)"></mat-checkbox>
+                    <span class="task-title">{{p.title}}</span>
+                </label>
+            </li>
+        </ul>
     </div>
-  </div>
 
-  <div class="center">
-    <h4>NAPI TEENDŐK</h4>
-    <ul class="tasks">
-      <li *ngFor="let t of tasks" [class.active]="t === tasks[1]">
-        <label>
-          <input type="checkbox" [checked]="t.done" (change)="toggle(t)" />
-          <span class="task-title">{{t.title}}</span>
-        </label>
-      </li>
-    </ul>
-  </div>
+    <div class="center">
+        <h4>HÁTRALEVŐ NAPI TEENDŐK</h4>
+        <ul class="tasks">
+            <li *ngFor="let p of remainingPlans()" [class.active]="p === plans()[1]">
+                <label>
+                    <mat-checkbox [ngModel]="p.isCompleted"
+                        (change)="this.changePlanStatus(p, $event.checked)"></mat-checkbox>
+                    <span class="task-title">{{p.title}}</span>
+                </label>
+            </li>
+        </ul>
+    </div>
 
-  <div class="right">
-    <h4>Napi motivációs üzenet</h4>
-    <p>Kis lépések nagy hatás — ma is tegyél egy apró lépést!</p>
-  </div>
+    <div class="right">
+        <h4>Napi motivációs üzenet</h4>
+        <p>Kis lépések nagy hatás — ma is tegyél egy apró lépést!</p>
+    </div>
 </div>

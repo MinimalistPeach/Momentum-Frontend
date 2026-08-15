@@ -5,6 +5,7 @@ import { RegisterComponent } from '../../components/register/register.component'
 import { AuthService, LoginUserDto, RegisterUserDto } from '../../api';
 import { lastValueFrom } from 'rxjs';
 import { TokenService } from '../../services/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -18,6 +19,8 @@ export class AuthComponent {
 
   private readonly tokenService: TokenService = inject(TokenService);
 
+  private readonly router = inject(Router);
+
   mode: 'login' | 'register' = 'login';
 
   switchMode(newMode: 'login' | 'register'): void {
@@ -27,6 +30,7 @@ export class AuthComponent {
   async login(loginData: LoginUserDto) {
     await lastValueFrom(this.authService.signIn(loginData)).then((token) => {
       this.tokenService.setToken(token.access_token);
+      this.router.navigateByUrl('/plans');
     });
   }
 

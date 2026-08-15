@@ -19,18 +19,30 @@ export interface RegisterUserDto {
 }
 
 export interface UpdateUserDto {
+    username: string;
+    password: string;
+}
+
+export interface ListPlanDto {
+    title: string;
+    description: string;
+    friendIds: Array<string>;
+    isCompleted: boolean;
+    planId: string;
 }
 
 export interface CreatePlanDto {
     title: string;
     description: string;
     friendIds: Array<string>;
+    isCompleted: boolean;
 }
 
 export interface UpdatePlanDto {
     title: string;
     description: string;
     friendIds: Array<string>;
+    isCompleted: boolean;
     planId: string;
 }
 

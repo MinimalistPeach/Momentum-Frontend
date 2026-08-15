@@ -1,34 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ListPlanDto, PlanService } from '../../api';
+import { lastValueFrom } from 'rxjs';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-plans',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './plans.component.html',
-  styleUrls: ['./plans.component.scss']
+    selector: 'app-plans',
+    standalone: true,
+    imports: [CommonModule, MatCheckboxModule, FormsModule],
+    templateUrl: './plans.component.html',
+    styleUrls: ['./plans.component.scss']
 })
-export class PlansComponent {
-  tasks = [
-    { id: 1, title: 'Item 1', done: true },
-    { id: 2, title: 'Item 2', done: true },
-    { id: 3, title: 'Item 3', done: false }
-  ];
+export class PlansComponent implements OnInit {
 
-  toggle(task: any): void {
-    task.done = !task.done;
-  }
+    private readonly _planApi = inject(PlanService);
 
-  get completedCount(): number {
-    return this.tasks.filter(t => t.done).length;
-  }
+    plans = signal<ListPlanDto[]>([]);
 
-  get totalCount(): number {
-    return this.tasks.length;
-  }
+    completedPlans = signal<ListPlanDto[]>([]);
 
-  get progressPct(): number {
-    if (this.totalCount === 0) return 0;
-    return Math.round((this.completedCount / this.totalCount) * 100);
-  }
+    remainingPlans = signal<ListPlanDto[]>([]);
+
+    async ngOnInit(): Promise<void> {
+        await this.load();
+    }
+
+    async load() {
+        await lastValueFrom(this._planApi.getAllByUser()).then((plans) => {
+            this.plans.set(plans);
+        });
+
+        this.completedPlans.set(this.plans().filter(x => x.isCompleted));
+
+        this.remainingPlans.set(this.plans().filter(x => !x.isCompleted));
+    }
+
+    async changePlanStatus(plan: ListPlanDto, value: boolean) {
+        await lastValueFrom(this._planApi.updateUserPlanById(plan)).then(() => {
+            console.log('Terv frissítve')
+        })
+    }
 }
