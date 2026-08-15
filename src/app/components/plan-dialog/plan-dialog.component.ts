@@ -1,10 +1,6 @@
-import { Component, inject, model } from '@angular/core';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogModule,
-  MatDialogRef,
-} from '@angular/material/dialog';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { Component, inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CreatePlanDto } from '../../api';
 import { FormsModule } from '@angular/forms';
@@ -14,9 +10,10 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-plan-dialog',
-  imports: [MatDialogModule, MatFormField, MatLabel, FormsModule, CommonModule, MatInputModule, MatButtonModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './plan-dialog.component.html',
-  styleUrl: './plan-dialog.component.scss'
+  styleUrls: ['./plan-dialog.component.scss']
 })
 export class PlanDialogComponent {
   readonly dialogRef = inject(MatDialogRef<PlanDialogComponent>);

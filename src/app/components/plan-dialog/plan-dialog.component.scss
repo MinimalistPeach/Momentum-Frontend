@@ -1,0 +1,43 @@
+:host {
+  display: block;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 260px;
+  max-width: 480px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* make inputs visually smaller and denser */
+.dense .mat-form-field-infix {
+  padding: 6px 10px;
+}
+
+.mat-dialog-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+mat-dialog-actions {
+  margin-top: 8px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .dialog-content {
+    min-width: 92vw;
+    max-width: 92vw;
+    gap: 10px;
+  }
+}
+
+/* Slightly round and lift the primary action */
+button[mat-flat-button][color="primary"] {
+  box-shadow: 0 2px 6px rgba(25,118,210,0.12);
+}

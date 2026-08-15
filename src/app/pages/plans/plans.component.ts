@@ -73,6 +73,8 @@ export class PlansComponent implements OnInit {
     openDialog(): void {
         const dialogRef = this.dialog.open(PlanDialogComponent, {
             data: { title: '', description: '' },
+            width: '92vw',
+            maxWidth: '480px'
         });
 
         dialogRef.afterClosed().subscribe(async result => {

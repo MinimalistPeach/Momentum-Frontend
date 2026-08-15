@@ -1,15 +1,18 @@
-<h2 mat-dialog-title>Új terv felvételéhez kérlek töltsd ki az alábbi mezőket</h2>
-<mat-dialog-content>
-    <mat-form-field>
+<h2 mat-dialog-title>Új terv</h2>
+<mat-dialog-content class="dialog-content">
+    <mat-form-field appearance="outline" class="full-width dense">
         <mat-label>Cím</mat-label>
-        <input matInput [(ngModel)]="data.title" />
+        <input matInput [(ngModel)]="data.title" maxlength="100" />
+        <mat-hint align="end">{{data.title.length || 0}}/100</mat-hint>
     </mat-form-field>
-    <mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width dense">
         <mat-label>Leírás</mat-label>
-        <input matInput [(ngModel)]="data.description" />
+        <textarea matInput rows="3" [(ngModel)]="data.description" maxlength="300"></textarea>
+        <mat-hint align="end">{{data.description.length || 0}}/300</mat-hint>
     </mat-form-field>
 </mat-dialog-content>
-<mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Bezárás mentés nélkül</button>
-    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Mentés</button>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onNoClick()">Mégse</button>
+    <button mat-flat-button color="primary" [mat-dialog-close]="data" [disabled]="!data.title" cdkFocusInitial>Mentés</button>
 </mat-dialog-actions>
