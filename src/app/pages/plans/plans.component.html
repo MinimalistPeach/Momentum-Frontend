@@ -1,9 +1,13 @@
+<button mat-fab extended (click)="openDialog()">
+    <mat-icon>note_add</mat-icon>
+    Új terv hozzáadása
+</button>
 <div class="plans-page">
     <div class="left">
         <h4>ELVÉGZETT NAPI TEENDŐK</h4>
         <ul class="tasks">
-            <li *ngFor="let p of completedPlans()" @fadeInOut>
-                <div class="task-card">
+            <li *ngFor="let p of completedPlans()">
+                <div class="task-card" @fadeInOut>
                     <div class="task-card-checkbox">
                         <mat-checkbox [ngModel]="p.isCompleted"
                             (change)="this.changePlanStatus(p, $event.checked)"></mat-checkbox>
@@ -11,6 +15,11 @@
                     <div class="task-card-content">
                         <div class="task-title">{{p.title}}</div>
                         <div class="task-description">{{p.description}}</div>
+                    </div>
+                    <div class="delete-button">
+                        <button mat-icon-button (click)="deletePlan(p.planId)">
+                            <mat-icon style="color: red">delete</mat-icon>
+                        </button>
                     </div>
                 </div>
             </li>
@@ -20,8 +29,8 @@
     <div class="center">
         <h4>HÁTRALEVŐ NAPI TEENDŐK</h4>
         <ul class="tasks">
-            <li *ngFor="let p of remainingPlans()" @fadeInOut>
-                <div class="task-card">
+            <li *ngFor="let p of remainingPlans()">
+                <div class="task-card" @fadeInOut>
                     <div class="task-card-checkbox">
                         <mat-checkbox [ngModel]="p.isCompleted"
                             (change)="this.changePlanStatus(p, $event.checked)"></mat-checkbox>
@@ -29,6 +38,11 @@
                     <div class="task-card-content">
                         <div class="task-title">{{p.title}}</div>
                         <div class="task-description">{{p.description}}</div>
+                    </div>
+                    <div class="delete-button">
+                        <button mat-icon-button (click)="deletePlan(p.planId)">
+                            <mat-icon style="color: red">delete</mat-icon>
+                        </button>
                     </div>
                 </div>
             </li>

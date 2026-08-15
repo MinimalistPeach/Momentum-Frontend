@@ -53,10 +53,10 @@ export class PlanService {
         });
     }
 
-    register(createPlanDto: CreatePlanDto, observe?: 'body', options?: RequestOptions<'json'>): Observable<any>;
-    register(createPlanDto: CreatePlanDto, observe?: 'response', options?: RequestOptions<'json'>): Observable<HttpResponse<any>>;
-    register(createPlanDto: CreatePlanDto, observe?: 'events', options?: RequestOptions<'json'>): Observable<HttpEvent<any>>;
-    register(createPlanDto: CreatePlanDto, observe?: 'body' | 'events' | 'response', options?: RequestOptions<'arraybuffer' | 'blob' | 'json' | 'text'>): Observable<any> {
+    addPlan(createPlanDto: CreatePlanDto, observe?: 'body', options?: RequestOptions<'json'>): Observable<any>;
+    addPlan(createPlanDto: CreatePlanDto, observe?: 'response', options?: RequestOptions<'json'>): Observable<HttpResponse<any>>;
+    addPlan(createPlanDto: CreatePlanDto, observe?: 'events', options?: RequestOptions<'json'>): Observable<HttpEvent<any>>;
+    addPlan(createPlanDto: CreatePlanDto, observe?: 'body' | 'events' | 'response', options?: RequestOptions<'arraybuffer' | 'blob' | 'json' | 'text'>): Observable<any> {
         const url = `${this.basePath}/plans`;
 
         let headers: HttpHeaders;

@@ -38,6 +38,17 @@
     width: 50%;
 }
 
+.delete-button {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.delete-button button {
+    width: 36px;
+    height: 36px;
+}
+
 .task-card-checkbox {
     display: flex;
     align-items: center;
