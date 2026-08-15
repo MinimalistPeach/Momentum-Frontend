@@ -1,8 +1,7 @@
 import { GeneratorConfig } from "ng-openapi";
-import { environment } from "../environments/environment";
 
 const config: GeneratorConfig = {
-    input: environment.apiUrl+"/api-json",
+    input: "http://localhost:3000/api-json",
     output: "./api",
     options: {
         dateType: "Date",

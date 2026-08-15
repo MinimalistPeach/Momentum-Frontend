@@ -21,6 +21,19 @@ export interface RegisterUserDto {
 export interface UpdateUserDto {
 }
 
+export interface CreatePlanDto {
+    title: string;
+    description: string;
+    friendIds: Array<string>;
+}
+
+export interface UpdatePlanDto {
+    title: string;
+    description: string;
+    friendIds: Array<string>;
+    planId: string;
+}
+
 /** Request Options for Angular HttpClient requests */
 export interface RequestOptions<TResponseType extends 'arraybuffer' | 'blob' | 'json' | 'text'> {
     headers?: HttpHeaders;
