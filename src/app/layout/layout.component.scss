@@ -1,0 +1,199 @@
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: visible;
+}
+
+.sidebar {
+  width: 220px;
+  min-width: 220px;
+  background: #1673e6;
+  color: white;
+  padding: 24px 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  top: 0;
+  overflow-y: auto;
+  transition: width 0.2s ease, min-width 0.2s ease, padding 0.2s ease, transform 0.2s ease;
+}
+
+.app-shell.menu-hidden .sidebar {
+  width: 0;
+  min-width: 0;
+  padding-left: 0;
+  padding-right: 0;
+  overflow: hidden;
+}
+
+.brand {
+  margin-bottom: 24px;
+}
+.brand-title {
+  font-weight: 700;
+}
+.brand-sub {
+  font-size: 12px;
+  opacity: 0.95;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+.username {
+  font-weight: 700;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.menu-item {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: inline-block;
+}
+.menu-item:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.main {
+  flex: 1 1 auto;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 100vh;
+  overflow: visible;
+}
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 24px;
+  border-bottom: 1px solid #eee;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 2;
+}
+.menu-toggle {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0;
+}
+.page-title {
+  font-size: 32px;
+  margin: 0;
+}
+
+.content {
+  padding: 32px 40px;
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sidebar-backdrop {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    min-height: 100vh;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 30;
+    width: min(80vw, 260px);
+    min-width: min(80vw, 260px);
+    transform: translateX(0);
+    box-shadow: 4px 0 18px rgba(0, 0, 0, 0.12);
+  }
+
+  .app-shell.menu-hidden .sidebar {
+    transform: translateX(-110%);
+    width: min(80vw, 260px);
+    min-width: min(80vw, 260px);
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .main {
+    width: 100%;
+    min-width: 100%;
+    min-height: 100dvh;
+  }
+
+  .content {
+    padding: 20px;
+    min-height: calc(100dvh - 72px);
+    overflow-y: auto;
+  }
+
+  .page-title {
+    font-size: 20px;
+  }
+
+  .sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 20;
+  }
+
+  .sidebar-backdrop.visible {
+    opacity: 1;
+    pointer-events: auto;
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar {
+    padding: 16px 18px;
+  }
+
+  .content {
+    padding: 16px;
+  }
+
+  .page-title {
+    font-size: 18px;
+  }
+
+  .brand-title {
+    font-size: 0.95rem;
+  }
+}

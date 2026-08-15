@@ -1,0 +1,38 @@
+<div class="app-shell" [class.menu-hidden]="!showMenu">
+  <div
+    class="sidebar-backdrop"
+    [class.visible]="showMenu"
+    (click)="toggleMenu()"
+    aria-hidden="true"
+  ></div>
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-title">MOMENTUM</div>
+      <div class="brand-sub">PLAN & ACHIEVE</div>
+    </div>
+
+    <div class="profile">
+      <div class="avatar">{{usernameFirstLetter}}</div>
+      <div class="username">{{username}}</div>
+    </div>
+
+    <nav class="menu">
+      <a routerLink="/home" class="menu-item" (click)="toggleMenu()">Napi statisztika</a>
+      <a routerLink="/plans" class="menu-item" (click)="toggleMenu()">Napi teendők</a>
+      <a routerLink="/home" class="menu-item" (click)="toggleMenu()">Havi statisztika</a>
+      <a routerLink="/home" class="menu-item" (click)="toggleMenu()">Éves statisztika</a>
+    </nav>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-toggle" (click)="toggleMenu()" aria-label="Toggle menu">☰</button>
+      <h1 class="page-title">Üdv újra!</h1>
+    </header>
+
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
